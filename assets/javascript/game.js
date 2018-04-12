@@ -4,7 +4,7 @@ var alphabet = "abcdefghijklmnopqrstuvwxyz";
 var wins = 0;
 var losses = 0;
 var guessesLeft = 9;
-var guessedLetters = [];
+var guessedLetters= [];
 
 var computerGuess = alphabet[Math.floor(Math.random() * alphabet.length)];
 
@@ -25,6 +25,10 @@ document.onkeyup = function(event) {
 
     var userGuess = event.key;
 
+    guessedLetters.push(userGuess);
+
+    console.log(guessedLetters);
+
     console.log(computerGuess);
 
 
@@ -35,11 +39,13 @@ document.onkeyup = function(event) {
         (wins++);
         (guessesLeft = 9);
         computerGuess = alphabet[Math.floor(Math.random() * alphabet.length)];
+        guessedLetters = [];
        
     } else if (guessesLeft === 1) {
         (losses++);
         (guessesLeft = 9);
         computerGuess = alphabet[Math.floor(Math.random() * alphabet.length)];
+        guessedLetters = [];
     }
 
 
@@ -48,8 +54,8 @@ document.onkeyup = function(event) {
     
     "<p>wins: " + wins + "</p>" +
     "<p>losses: " + losses + "</p>" +
-    "<p>guesses left: " + guessesLeft + "</p>"
-    "<p>guessed letters: " + guessedLetters.join() + "</p>" ;
+    "<p>guesses left: " + guessesLeft + "</p>" +
+    "<p>guessed letters: " + guessedLetters.join(', ') + "</p>" ;
     
     document.querySelector("#psychicGame").innerHTML = html;
 
